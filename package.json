@@ -1,0 +1,25 @@
+{
+  "name": "permguard-node",
+  "version": "1.0.0",
+  "description": "[![GitHub License](https://img.shields.io/github/license/permguard/permguard-node)](https://github.com/permguard/permguard-node?tab=Apache-2.0-1-ov-file#readme)\r [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/permguard)](https://x.com/intent/follow?original_referer=https%3A%2F%2Fdeveloper.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5ETwitterDev&screen_name=Permguard)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@grpc/grpc-js": "^1.12.6",
+    "@types/node": "^22.13.9",
+    "grpc-tools": "^1.13.0",
+    "protobufjs": "^7.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.16",
+    "lodash": "^4.17.21",
+    "ts-proto": "^2.6.1"
+  }
+}
