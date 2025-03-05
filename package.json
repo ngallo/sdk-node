@@ -10,16 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@grpc/grpc-js": "^1.12.6",
     "@types/node": "^22.13.9",
-    "grpc-tools": "^1.13.0",
-    "protobufjs": "^7.4.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "@types/lodash": "^4.17.16"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.16",
-    "lodash": "^4.17.21",
-    "ts-proto": "^2.6.1"
+    "lodash": "^4.17.21"
   }
 }

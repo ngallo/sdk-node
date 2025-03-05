@@ -18,8 +18,8 @@
  * PolicyStore represents the Policy Store.
  */
 export interface PolicyStore {
-  kind: string;
-  id: string;
+  Kind: string;
+  ID: string;
 }
 
 /**
@@ -68,9 +68,9 @@ export interface AZRequest {
  * Principal is the principal object.
  */
 export interface Principal {
-  type: string;
-  id: string;
-  source?: string;
+  Type: string;
+  ID: string;
+  Source?: string;
 }
 
 /**
@@ -121,17 +121,17 @@ export interface ContextResponse {
  * EvaluationResponse represents the result of the evaluation process.
  */
 export interface EvaluationResponse {
-  requestID?: string;
-  decision?: boolean;
-  context?: ContextResponse;
+  RequestId?: string;
+  Decision?: boolean;
+  Context?: ContextResponse;
 }
 
 /**
  * AZResponse represents the outcome of the authorization decision.
  */
 export interface AZResponse {
-  requestID?: string;
-  decision: boolean;
-  context?: ContextResponse;
-  evaluations?: EvaluationResponse[];
+  RequestID?: string;
+  Decision: boolean;
+  Context?: ContextResponse;
+  Evaluations?: EvaluationResponse[];
 }
