@@ -134,10 +134,15 @@ export class AZRequestBuilder {
    */
   withEntitiesItems(
     schema: string,
-    entities: Record<string, any>[]
+    entities?: Record<string, any>[]
   ): AZRequestBuilder {
     this.azRequest.AZModel.Entities.Schema = schema;
     this.azRequest.AZModel.Entities.Items = entities;
+
+    if (!this.azRequest.AZModel.Entities.Items) {
+      this.azRequest.AZModel.Entities.Items = [];
+    }
+
     return this;
   }
 

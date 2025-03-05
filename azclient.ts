@@ -14,26 +14,35 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { grpc } from "@improbable-eng/grpc-web";
-import { AZRequest, AZResponse } from "./azreq"; // Adjust the import path as needed
-import { PDPClient } from "./pdp_grpc_web_pb"; // Generated gRPC-Web client
-import {
-  AuthorizationCheckRequest,
-  AuthorizationCheckResponse,
-} from "./pdp_pb"; // Generated Protocol Buffers messages
-import { AZConfig, AZOption } from "./azconfig"; // Import AZConfig and AZOption from azconfig.ts
+import { AZRequest, AZResponse } from "./az/azreq/model";
+import { PDPClient } from "./internal/az/azreq/grpc/v1/pdp_client";
 
 /**
- * Represents the client to interact with the authorization server.
+ * Represents the configuration for the AZClient.
  */
-class AZClient {
+interface AZConfig {
+  pdpEndpoint: {
+    endpoint: string;
+    port: number;
+  };
+}
+
+/**
+ * Represents an option function to configure the AZClient.
+ */
+type AZOption = (config: AZConfig) => void;
+
+/**
+ * AZClient is the client to interact with the authorization server.
+ */
+export class AZClient {
   private azConfig: AZConfig;
 
   /**
-   * Creates a new authorization client.
-   * @param opts - Optional configuration options for the client.
+   * Creates a new AZClient.
+   * @param opts - Optional configuration options.
    */
-  constructor(opts: AZOption[] = []) {
+  constructor(...opts: AZOption[]) {
     this.azConfig = {
       pdpEndpoint: {
         endpoint: "localhost",
@@ -41,53 +50,43 @@ class AZClient {
       },
     };
 
-    // Apply configuration options
+    // Apply options
     opts.forEach((opt) => opt(this.azConfig));
   }
 
   /**
    * Checks the input authorization request with the authorization server.
-   * @param req - The authorization request to check.
-   * @returns A tuple containing the decision, response, and error (if any).
+   * @param req - The authorization request.
+   * @returns A tuple containing:
+   *   - A boolean indicating the decision (true if authorized, false otherwise).
+   *   - The full authorization response.
+   *   - An error, if any.
    */
-  async Check(
+  async check(
     req: AZRequest
   ): Promise<[boolean, AZResponse | null, Error | null]> {
     const target = `${this.azConfig.pdpEndpoint.endpoint}:${this.azConfig.pdpEndpoint.port}`;
 
-    // Create a gRPC-Web client
-    const client = new PDPClient(target);
-
-    // Convert the AZRequest to a gRPC request
-    const request = new AuthorizationCheckRequest();
-    // Populate the request with data from req (you'll need to map fields accordingly)
-    // Example: request.setZoneId(req.zoneId);
+    // Create a PDPClient instance
+    const pdpClient = new PDPClient(target);
 
     try {
-      // Make the gRPC-Web call
-      const response = await new Promise<AuthorizationCheckResponse>(
-        (resolve, reject) => {
-          client.authorizationCheck(request, {}, (err, response) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(response);
-            }
-          });
-        }
-      );
-
-      // Convert the gRPC response to AZResponse
-      const azResponse: AZResponse = {
-        decision: response.getDecision(),
-        // Map other fields as needed
-      };
-
-      return [azResponse.decision, azResponse, null];
+      const response = await pdpClient.authorizationCheck(req);
+      return [response.Decision, response, null];
     } catch (err) {
-      return [false, null, err as Error];
+      return [false, null, err instanceof Error ? err : new Error(String(err))];
+    } finally {
+      // Close the gRPC client connection
+      pdpClient.close();
     }
   }
 }
 
-export { AZClient };
+/**
+ * Creates a new AZClient with the provided options.
+ * @param opts - Optional configuration options.
+ * @returns A new AZClient instance.
+ */
+export function newAZClient(...opts: AZOption[]): AZClient {
+  return new AZClient(...opts);
+}

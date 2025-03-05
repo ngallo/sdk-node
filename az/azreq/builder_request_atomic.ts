@@ -77,7 +77,7 @@ export class AZAtomicRequestBuilder {
    */
   withEntitiesItems(
     schema: string,
-    entities: Record<string, any>[]
+    entities?: Record<string, any>[]
   ): AZAtomicRequestBuilder {
     this.azRequestBuilder.withEntitiesItems(schema, entities);
     return this;
