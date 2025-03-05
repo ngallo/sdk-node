@@ -29,7 +29,7 @@ export class ResourceBuilder {
    */
   constructor(kind: string) {
     this.resource = {
-      type: kind,
+      Type: kind,
     };
   }
 
@@ -39,7 +39,7 @@ export class ResourceBuilder {
    * @returns The ResourceBuilder instance for method chaining.
    */
   withID(id: string): ResourceBuilder {
-    this.resource.id = id;
+    this.resource.ID = id;
     return this;
   }
 
@@ -50,11 +50,11 @@ export class ResourceBuilder {
    * @returns The ResourceBuilder instance for method chaining.
    */
   withProperty(key: string, value: any): ResourceBuilder {
-    if (!this.resource.properties) {
-      this.resource.properties = {};
+    if (!this.resource.Properties) {
+      this.resource.Properties = {};
     }
 
-    this.resource.properties[key] = value;
+    this.resource.Properties[key] = value;
     return this;
   }
 

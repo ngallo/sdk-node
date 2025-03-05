@@ -34,8 +34,8 @@ export class PrincipalBuilder {
    */
   constructor(id: string) {
     this.principal = {
-      type: PrincipalDefaultKind,
-      id,
+      Type: PrincipalDefaultKind,
+      ID: id,
     };
   }
 
@@ -45,7 +45,7 @@ export class PrincipalBuilder {
    * @returns The PrincipalBuilder instance for method chaining.
    */
   withKind(kind: string): PrincipalBuilder {
-    this.principal.type = kind;
+    this.principal.Type = kind;
     return this;
   }
 
@@ -55,7 +55,7 @@ export class PrincipalBuilder {
    * @returns The PrincipalBuilder instance for method chaining.
    */
   withSource(source: string): PrincipalBuilder {
-    this.principal.source = source;
+    this.principal.Source = source;
     return this;
   }
 

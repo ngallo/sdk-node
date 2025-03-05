@@ -31,9 +31,9 @@ export class EvaluationBuilder {
    */
   constructor(subject: Subject, resource: Resource, action: Action) {
     this.azEvaluation = {
-      subject,
-      resource,
-      action,
+      Subject: subject,
+      Resource: resource,
+      Action: action,
     };
   }
 
@@ -43,7 +43,7 @@ export class EvaluationBuilder {
    * @returns The EvaluationBuilder instance for method chaining.
    */
   withRequestID(requestID: string): EvaluationBuilder {
-    this.azEvaluation.requestID = requestID;
+    this.azEvaluation.RequestID = requestID;
     return this;
   }
 
@@ -53,7 +53,7 @@ export class EvaluationBuilder {
    * @returns The EvaluationBuilder instance for method chaining.
    */
   withContext(context: Record<string, any>): EvaluationBuilder {
-    this.azEvaluation.context = context;
+    this.azEvaluation.Context = context;
     return this;
   }
 

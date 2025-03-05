@@ -29,7 +29,7 @@ export class ActionBuilder {
    */
   constructor(name: string) {
     this.action = {
-      name,
+      Name: name,
     };
   }
 
@@ -40,11 +40,11 @@ export class ActionBuilder {
    * @returns The ActionBuilder instance for method chaining.
    */
   withProperty(key: string, value: any): this {
-    if (!this.action.properties) {
-      this.action.properties = {};
+    if (!this.action.Properties) {
+      this.action.Properties = {};
     }
 
-    this.action.properties[key] = value;
+    this.action.Properties[key] = value;
     return this;
   }
 

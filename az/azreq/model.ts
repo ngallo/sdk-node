@@ -18,58 +18,58 @@
  * PolicyStore represents the Policy Store.
  */
 export interface PolicyStore {
-  Kind: string;
-  ID: string;
+  Kind?: string;
+  ID?: string;
 }
 
 /**
  * Entities represents the Entities.
  */
 export interface Entities {
-  schema: string;
-  items: Record<string, any>[];
+  Schema?: string;
+  Items?: Record<string, any>[];
 }
 
 /**
  * Evaluation is the Evaluation object.
  */
 export interface Evaluation {
-  requestID?: string;
-  subject?: Subject;
-  resource?: Resource;
-  action?: Action;
-  context?: Record<string, any>;
+  RequestID?: string;
+  Subject?: Subject;
+  Resource?: Resource;
+  Action?: Action;
+  Context?: Record<string, any>;
 }
 
 /**
  * azModel is the Authorization Model.
  */
 export interface AZModel {
-  zoneID: number;
-  principal?: Principal;
-  policyStore?: PolicyStore;
-  entities: Entities;
+  ZoneID: number;
+  Principal?: Principal;
+  PolicyStore?: PolicyStore;
+  Entities: Entities;
 }
 
 /**
  * AZRequest is the AZRequest object.
  */
 export interface AZRequest {
-  azModel: AZModel;
-  requestID?: string;
-  subject?: Subject;
-  resource?: Resource;
-  action?: Action;
-  context?: Record<string, any>;
-  evaluations: Evaluation[];
+  AZModel: AZModel;
+  RequestID?: string;
+  Subject?: Subject;
+  Resource?: Resource;
+  Action?: Action;
+  Context?: Record<string, any>;
+  Evaluations?: Evaluation[];
 }
 
 /**
  * Principal is the principal object.
  */
 export interface Principal {
-  Type: string;
-  ID: string;
+  Type?: string;
+  ID?: string;
   Source?: string;
 }
 
@@ -77,51 +77,51 @@ export interface Principal {
  * Subject is the subject object.
  */
 export interface Subject {
-  type: string;
-  id: string;
-  source?: string;
-  properties?: Record<string, any>;
+  Type?: string;
+  ID?: string;
+  Source?: string;
+  Properties?: Record<string, any>;
 }
 
 /**
  * Resource is the resource object.
  */
 export interface Resource {
-  type: string;
-  id?: string;
-  properties?: Record<string, any>;
+  Type?: string;
+  ID?: string;
+  Properties?: Record<string, any>;
 }
 
 /**
  * Action is the action object.
  */
 export interface Action {
-  name: string;
-  properties?: Record<string, any>;
+  Name?: string;
+  Properties?: Record<string, any>;
 }
 
 /**
  * ReasonResponse provides the rationale for the response.
  */
 export interface ReasonResponse {
-  code?: string;
-  message?: string;
+  Code?: string;
+  Message?: string;
 }
 
 /**
  * ContextResponse represents the context included in the response.
  */
 export interface ContextResponse {
-  id?: string;
-  reasonAdmin?: ReasonResponse;
-  reasonUser?: ReasonResponse;
+  ID?: string;
+  ReasonAdmin?: ReasonResponse;
+  ReasonUser?: ReasonResponse;
 }
 
 /**
  * EvaluationResponse represents the result of the evaluation process.
  */
 export interface EvaluationResponse {
-  RequestId?: string;
+  RequestID?: string;
   Decision?: boolean;
   Context?: ContextResponse;
 }

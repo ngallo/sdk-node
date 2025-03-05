@@ -34,8 +34,8 @@ export class SubjectBuilder {
    */
   constructor(id: string) {
     this.subject = {
-      type: SubjectDefaultKind,
-      id,
+      Type: SubjectDefaultKind,
+      ID: id,
     };
   }
 
@@ -45,7 +45,7 @@ export class SubjectBuilder {
    * @returns The SubjectBuilder instance for method chaining.
    */
   withKind(kind: string): SubjectBuilder {
-    this.subject.type = kind;
+    this.subject.Type = kind;
     return this;
   }
 
@@ -55,7 +55,7 @@ export class SubjectBuilder {
    * @returns The SubjectBuilder instance for method chaining.
    */
   withSource(source: string): SubjectBuilder {
-    this.subject.source = source;
+    this.subject.Source = source;
     return this;
   }
 
@@ -66,10 +66,10 @@ export class SubjectBuilder {
    * @returns The SubjectBuilder instance for method chaining.
    */
   withProperty(key: string, value: any): SubjectBuilder {
-    if (!this.subject.properties) {
-      this.subject.properties = {};
+    if (!this.subject.Properties) {
+      this.subject.Properties = {};
     }
-    this.subject.properties[key] = value;
+    this.subject.Properties[key] = value;
     return this;
   }
 
