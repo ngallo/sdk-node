@@ -64,7 +64,11 @@ export class AZClient {
    */
   async check(
     req: AZRequest
-  ): Promise<[boolean, AZResponse | null, Error | null]> {
+  ): Promise<{
+    decision: boolean;
+    response: AZResponse | null;
+    error: Error | null;
+  }> {
     const target = `${this.azConfig.pdpEndpoint.endpoint}:${this.azConfig.pdpEndpoint.port}`;
 
     // Create a PDPClient instance
@@ -72,9 +76,11 @@ export class AZClient {
 
     try {
       const response = await pdpClient.authorizationCheck(req);
-      return [response.Decision, response, null];
+      return { decision: response.Decision, response, error: null };
     } catch (err) {
-      return [false, null, err instanceof Error ? err : new Error(String(err))];
+      const error = err instanceof Error ? err : new Error(String(err));
+
+      return { decision: false, response: null, error };
     } finally {
       // Close the gRPC client connection
       pdpClient.close();

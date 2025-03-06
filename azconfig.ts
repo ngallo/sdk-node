@@ -40,7 +40,7 @@ type AZOption = (config: AZConfig) => void;
  * @param port - The port number (e.g., 9094).
  * @returns An AZOption function to configure the AZConfig.
  */
-function WithEndpoint(endpoint: string, port: number): AZOption {
+function withEndpoint(endpoint: string, port: number): AZOption {
   return (config: AZConfig) => {
     config.pdpEndpoint = {
       endpoint,
@@ -49,4 +49,4 @@ function WithEndpoint(endpoint: string, port: number): AZOption {
   };
 }
 
-export { AZConfig, AZOption, WithEndpoint };
+export { AZConfig, AZOption, withEndpoint };

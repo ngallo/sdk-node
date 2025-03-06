@@ -25,7 +25,9 @@ export class ContextBuilder {
   /**
    * Creates a new ContextBuilder instance.
    */
-  constructor() {}
+  constructor() {
+    this.context = {};
+  }
 
   /**
    * Sets a property of the context.

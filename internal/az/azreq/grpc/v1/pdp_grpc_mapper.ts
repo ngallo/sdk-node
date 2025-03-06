@@ -1,5 +1,4 @@
-import * as grpc from "@grpc/grpc-js";
-import * as pb from "google-protobuf/google/protobuf/struct_pb";
+import * as pb from "./generated/google/protobuf/struct";
 import * as pdpGRPC from "./generated/proto/v1/pdp";
 import {
   PolicyStore,
@@ -63,7 +62,7 @@ export function mapEntitiesToGrpcEntities(
 
   if (entities.Items) {
     grpcEntities.Items = entities.Items.map((item) =>
-      pb.google.protobuf.Struct.fromJavaScript(item)
+      pb.google.protobuf.Struct.fromObject(item)
     );
   }
   return grpcEntities;
@@ -84,7 +83,7 @@ export function mapSubjectToGrpcSubject(
 
   if (subject.Source) grpcSubject.Source = subject.Source;
   if (subject.Properties) {
-    grpcSubject.Properties = pb.google.protobuf.Struct.fromJavaScript(
+    grpcSubject.Properties = pb.google.protobuf.Struct.fromObject(
       subject.Properties
     );
   }
@@ -105,7 +104,7 @@ export function mapResourceToGrpcResource(
   });
 
   if (resource.Properties) {
-    grpcResource.Properties = pb.google.protobuf.Struct.fromJavaScript(
+    grpcResource.Properties = pb.google.protobuf.Struct.fromObject(
       resource.Properties
     );
   }
@@ -126,7 +125,7 @@ export function mapActionToGrpcAction(
   });
 
   if (action.Properties) {
-    grpcAction.Properties = pb.google.protobuf.Struct.fromJavaScript(
+    grpcAction.Properties = pb.google.protobuf.Struct.fromObject(
       action.Properties
     );
   }
@@ -159,7 +158,7 @@ export function mapEvaluationToGrpcEvaluationRequest(
   }
 
   if (evaluation.Context) {
-    grpcEvaluation.Context = pb.google.protobuf.Struct.fromJavaScript(
+    grpcEvaluation.Context = pb.google.protobuf.Struct.fromObject(
       evaluation.Context
     );
   }
@@ -226,7 +225,7 @@ export function mapAZRequestToGrpcAuthorizationCheckRequest(
   }
 
   if (azRequest.Context) {
-    grpcRequest.Context = pb.google.protobuf.Struct.fromJavaScript(
+    grpcRequest.Context = pb.google.protobuf.Struct.fromObject(
       azRequest.Context
     );
   }

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/google-protobuf": "^3.15.12",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.9",
     "protoc-gen-grpc-web": "^1.5.0",
