@@ -19,7 +19,7 @@ import { SubjectBuilder } from "./builder_subject";
 import { ResourceBuilder } from "./builder_resource";
 import { ActionBuilder } from "./builder_action";
 import { ContextBuilder } from "./builder_context";
-import { Principal, AZRequest } from "./model";
+import { Principal, AZRequest, ActorType } from "./model";
 
 /**
  * AZAtomicRequestBuilder is the builder for the AZAtomicRequest object.
@@ -174,6 +174,43 @@ export class AZAtomicRequestBuilder {
    */
   withContextProperty(key: string, value: any): AZAtomicRequestBuilder {
     this.azContextBuilder.withProperty(key, value);
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to UserType.
+   * @returns The AZAtomicRequestBuilder instance for method chaining.
+   */
+  withSubjectUserType(): AZAtomicRequestBuilder {
+    this.azSubjectBuilder.withKind(ActorType.UserType);
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to RoleActorType.
+   * @returns The AZAtomicRequestBuilder instance for method chaining.
+   */
+  withSubjectRoleActorType(): AZAtomicRequestBuilder {
+    this.azSubjectBuilder.withKind(ActorType.RoleActorType);
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to TwinActorType.
+   * @returns The AZAtomicRequestBuilder instance for method chaining.
+   */
+  withSubjectTwinActorType(): AZAtomicRequestBuilder {
+    this.azSubjectBuilder.withKind(ActorType.TwinActorType);
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject.
+   * @param kind - The type of the subject.
+   * @returns The AZAtomicRequestBuilder instance for method chaining.
+   */
+  withSubjectType(kind: string): AZAtomicRequestBuilder {
+    this.azSubjectBuilder.withKind(kind);
     return this;
   }
 

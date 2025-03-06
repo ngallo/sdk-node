@@ -135,3 +135,9 @@ export interface AZResponse {
   Context?: ContextResponse | null;
   Evaluations?: EvaluationResponse[];
 }
+
+export enum ActorType {
+  UserType = "USER",
+  RoleActorType = "ROLE-ACTOR",
+  TwinActorType = "TWIN-ACTOR",
+}

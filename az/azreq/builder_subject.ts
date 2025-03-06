@@ -14,7 +14,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { Subject } from "./model";
+import { Subject, ActorType } from "./model";
 import _ from "lodash";
 
 /**
@@ -70,6 +70,43 @@ export class SubjectBuilder {
       this.subject.properties = {};
     }
     this.subject.properties[key] = value;
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to UserType.
+   * @returns The SubjectBuilder instance for method chaining.
+   */
+  withUserType(): SubjectBuilder {
+    this.subject.type = ActorType.UserType;
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to RoleActorType.
+   * @returns The SubjectBuilder instance for method chaining.
+   */
+  withRoleActorType(): SubjectBuilder {
+    this.subject.type = ActorType.RoleActorType;
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject to TwinActorType.
+   * @returns The SubjectBuilder instance for method chaining.
+   */
+  withTwinActorType(): SubjectBuilder {
+    this.subject.type = ActorType.TwinActorType;
+    return this;
+  }
+
+  /**
+   * Sets the type of the subject.
+   * @param subType - The type of the subject.
+   * @returns The SubjectBuilder instance for method chaining.
+   */
+  withType(subType: string): SubjectBuilder {
+    this.subject.type = subType;
     return this;
   }
 

@@ -96,14 +96,14 @@ async function checkAtomicEvaluation(): Promise<void> {
   const req = new AZAtomicRequestBuilder(
     583438038653,
     "46706cb00ea248d6841cfe2c9f02205b",
-    "amy.smith@acmecorp.com",
+    "platform-creator",
     "MagicFarmacia::Platform::Subscription",
-    "MagicFarmacia::Platform::Action::view"
+    "MagicFarmacia::Platform::Action::create"
   )
     .withRequestID("1234")
     .withPrincipal(principal)
     .withEntitiesItems("cedar", entities)
-    .withSubjectKind("user")
+    .withSubjectRoleActorType()
     .withSubjectSource("keycloack")
     .withSubjectProperty("isSuperUser", true)
     .withResourceID("e3a786fd07e24bfa95ba4341d3695ae8")
@@ -150,8 +150,8 @@ async function checkMultipleEvaluations(): Promise<void> {
   const azClient = new AZClient(withEndpoint("localhost", 9094));
 
   // Create a new subject
-  const subject = new SubjectBuilder("amy.smith@acmecorp.com")
-    .withKind("user")
+  const subject = new SubjectBuilder("platform-creator")
+    .withRoleActorType()
     .withSource("keycloack")
     .withProperty("isSuperUser", true)
     .build();
@@ -163,7 +163,9 @@ async function checkMultipleEvaluations(): Promise<void> {
     .build();
 
   // Create actions
-  const actionView = new ActionBuilder("MagicFarmacia::Platform::Action::view")
+  const actionView = new ActionBuilder(
+    "MagicFarmacia::Platform::Action::create"
+  )
     .withProperty("isEnabled", true)
     .build();
 
@@ -257,7 +259,7 @@ async function checkMultipleEvaluations(): Promise<void> {
 async function main() {
   await checkJsonRequest();
   await checkAtomicEvaluation();
-  // await checkMultipleEvaluations();
+  await checkMultipleEvaluations();
 }
 
 main();
