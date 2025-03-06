@@ -1,9 +1,14 @@
 {
   "authorization_model": {
-    "zone_id": 856808969904,
+    "zone_id": 895741663247,
     "policy_store": {
       "kind": "ledger",
       "id": "17d5a9fb74474218b9dcd43b8861cda5"
+    },
+    "principal": {
+      "type": "user",
+      "id": "amy.smith@acmecorp.com",
+      "source": "keycloak"
     },
     "entities": {
       "schema": "cedar",
@@ -19,37 +24,53 @@
           "parents": []
         }
       ]
-    },
-    "principal": {
-      "type": "user",
-      "id": "amy.smith@acmecorp.com"
     }
   },
-  "evaluations": [],
-  "request_id": "1234",
+  "request_id": "abc1",
   "subject": {
-    "type": "user",
-    "id": "amy.smith@acmecorp.com",
-    "source": "keycloack",
+    "type": "role-actor",
+    "id": "platform-creator",
+    "source": "keycloak",
     "properties": {
       "isSuperUser": true
-    }
-  },
-  "resource": {
-    "type": "MagicFarmacia::Platform::Subscription",
-    "id": "e3a786fd07e24bfa95ba4341d3695ae8",
-    "properties": {
-      "isEnabled": true
-    }
-  },
-  "action": {
-    "name": "MagicFarmacia::Platform::Action::view",
-    "properties": {
-      "isEnabled": true
     }
   },
   "context": {
     "time": "2025-01-23T16:17:46+00:00",
     "isSubscriptionActive": true
-  }
+  },
+  "evaluations": [
+    {
+      "request_id": "exz1",
+      "resource": {
+        "type": "MagicFarmacia::Platform::Subscription",
+        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "action": {
+        "name": "MagicFarmacia::Platform::Action::view",
+        "properties": {
+          "isEnabled": true
+        }
+      }
+    },
+    {
+      "request_id": "exz2",
+      "resource": {
+        "type": "MagicFarmacia::Platform::view",
+        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "action": {
+        "name": "MagicFarmacia::Platform::Action::view",
+        "properties": {
+          "isEnabled": false
+        }
+      }
+    }
+  ]
 }
