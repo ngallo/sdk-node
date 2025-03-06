@@ -10,14 +10,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@protobuf-ts/plugin": "^2.9.4",
-    "@types/lodash": "^4.17.16",
-    "@types/node": "^22.13.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
+    "@protobuf-ts/plugin": "2.9.4",
+    "@types/lodash": "4.17.16",
+    "@types/node": "22.13.9",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.2"
   },
   "dependencies": {
-    "@protobuf-ts/grpc-transport": "^2.9.4",
-    "lodash": "^4.17.21"
+    "@grpc/grpc-js": "1.12.6",
+    "@protobuf-ts/grpc-transport": "2.9.4",
+    "@protobuf-ts/runtime-rpc": "2.9.4",
+    "lodash": "4.17.21"
   }
 }
