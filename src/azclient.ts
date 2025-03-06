@@ -15,27 +15,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { AZRequest, AZResponse } from "./az/azreq/model";
+import { AZConfig, AZOption } from "./azconfig";
 import { PDPClient } from "./internal/az/azreq/grpc/v1/pdp_client";
-
-/**
- * Represents the configuration for the AZClient.
- */
-interface AZConfig {
-  pdpEndpoint: {
-    endpoint: string;
-    port: number;
-  };
-}
-
-/**
- * Represents an option function to configure the AZClient.
- */
-type AZOption = (config: AZConfig) => void;
 
 /**
  * AZClient is the client to interact with the authorization server.
  */
-export class AZClient {
+class AZClient {
   private azConfig: AZConfig;
 
   /**
@@ -67,7 +53,7 @@ export class AZClient {
     response: AZResponse | null;
     error: Error | null;
   }> {
-    const target = `${this.azConfig.pdpEndpoint.endpoint}:${this.azConfig.pdpEndpoint.port}`;
+    const target = `${this.azConfig.pdpEndpoint?.endpoint}:${this.azConfig.pdpEndpoint?.port}`;
 
     // Create a PDPClient instance
     const pdpClient = new PDPClient(target);
@@ -83,11 +69,4 @@ export class AZClient {
   }
 }
 
-/**
- * Creates a new AZClient with the provided options.
- * @param opts - Optional configuration options.
- * @returns A new AZClient instance.
- */
-export function newAZClient(...opts: AZOption[]): AZClient {
-  return new AZClient(...opts);
-}
+export { AZClient };

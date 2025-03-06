@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "permguard-node": ["node_modules/permguard-node"]
+    },
     "target": "es2017",
     "module": "commonjs",
-    "outDir": "./dist",
     "rootDir": ".",
     "allowJs": true,
     "strict": true,
@@ -16,9 +19,6 @@
     "sourceMap": false,
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
     "incremental": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "examples", "test", "lib", "**/*spec.ts"]
+  }
 }

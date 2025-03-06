@@ -14,10 +14,8 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { AZClient } from "../../../azclient";
+// Load JSON file (embedded in Go, but in TypeScript, we can use `import` or `fs`)
 import {
-  AZRequest,
-  AZResponse,
   PrincipalBuilder,
   AZAtomicRequestBuilder,
   SubjectBuilder,
@@ -26,11 +24,10 @@ import {
   ContextBuilder,
   EvaluationBuilder,
   AZRequestBuilder,
-} from "../../../az/azreq/index";
-
-// Load JSON file (embedded in Go, but in TypeScript, we can use `import` or `fs`)
+  withEndpoint,
+  AZClient,
+} from "permguard-node";
 import json_ok_onlyone from "./requests/ok_onlyone1.json";
-import { withEndpoint } from "../../../azconfig";
 
 /**
  * Checks a JSON request.
