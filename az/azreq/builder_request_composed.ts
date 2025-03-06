@@ -56,7 +56,7 @@ export class AZRequestBuilder {
    * @param principal - The principal object.
    * @returns The AZRequestBuilder instance for method chaining.
    */
-  withPrincipal(principal: Principal): AZRequestBuilder {
+  withPrincipal(principal?: Principal): AZRequestBuilder {
     this.azRequest.AZModel.Principal = principal;
     return this;
   }
@@ -66,7 +66,7 @@ export class AZRequestBuilder {
    * @param requestID - The request ID.
    * @returns The AZRequestBuilder instance for method chaining.
    */
-  withRequestID(requestID: string): AZRequestBuilder {
+  withRequestID(requestID?: string): AZRequestBuilder {
     this.azRequest.RequestID = requestID;
     return this;
   }

@@ -25,8 +25,8 @@ import { Principal, AZRequest } from "./model";
  * AZAtomicRequestBuilder is the builder for the AZAtomicRequest object.
  */
 export class AZAtomicRequestBuilder {
-  private requestID: string;
-  private principal: Principal;
+  private requestID?: string;
+  private principal?: Principal;
   private azSubjectBuilder: SubjectBuilder;
   private azResourceBuilder: ResourceBuilder;
   private azActionBuilder: ActionBuilder;

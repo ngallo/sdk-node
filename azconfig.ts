@@ -49,4 +49,4 @@ function withEndpoint(endpoint: string, port: number): AZOption {
   };
 }
 
-export { AZConfig, AZOption, withEndpoint };
+export { type AZConfig, type AZOption, withEndpoint };
