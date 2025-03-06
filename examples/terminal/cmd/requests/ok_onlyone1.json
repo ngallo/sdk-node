@@ -1,14 +1,9 @@
 {
   "authorization_model": {
-    "zone_id": 601820581997,
+    "zone_id": 856808969904,
     "policy_store": {
-      "type": "ledger",
-      "id": "1de8e0781a854fa3a6b5f154d464557f"
-    },
-    "principal": {
-      "type": "user",
-      "id": "amy.smith@acmecorp.com",
-      "source": "keycloak"
+      "kind": "ledger",
+      "id": "17d5a9fb74474218b9dcd43b8861cda5"
     },
     "entities": {
       "schema": "cedar",
@@ -24,13 +19,18 @@
           "parents": []
         }
       ]
+    },
+    "principal": {
+      "type": "user",
+      "id": "amy.smith@acmecorp.com"
     }
   },
-  "request_id": "abc1",
+  "evaluations": [],
+  "request_id": "1234",
   "subject": {
     "type": "user",
     "id": "amy.smith@acmecorp.com",
-    "source": "keycloak",
+    "source": "keycloack",
     "properties": {
       "isSuperUser": true
     }
@@ -43,7 +43,7 @@
     }
   },
   "action": {
-    "name": "MagicFarmacia::Platform::Action::create",
+    "name": "MagicFarmacia::Platform::Action::view",
     "properties": {
       "isEnabled": true
     }

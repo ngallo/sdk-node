@@ -35,38 +35,38 @@ import { withEndpoint } from "../../../azconfig";
 /**
  * Checks a JSON request.
  */
-// async function checkJsonRequest(): Promise<void> {
-//   // Create a new Permguard client
-//   const azClient = new AZClient(withEndpoint("localhost", 9094));
+async function checkJsonRequest(): Promise<void> {
+  // Create a new Permguard client
+  const azClient = new AZClient(withEndpoint("localhost", 9094));
 
-//   // Check the authorization
-//   const { decision, response } = await azClient.check(json_ok_onlyone);
-//   if (decision) {
-//     console.log("✅ Authorization Permitted");
-//   } else {
-//     console.log("❌ Authorization Denied");
-//     if (response) {
-//       if (response.Context?.ReasonAdmin) {
-//         console.log(`-> Reason Admin: ${response.Context.ReasonAdmin.Message}`);
-//       }
-//       if (response.Context?.ReasonUser) {
-//         console.log(`-> Reason User: ${response.Context.ReasonUser.Message}`);
-//       }
-//       for (const evaluation of response.Evaluations || []) {
-//         if (evaluation.Context?.ReasonAdmin) {
-//           console.log(
-//             `-> Reason Admin: ${evaluation.Context.ReasonAdmin.Message}`
-//           );
-//         }
-//         if (evaluation.Context?.ReasonUser) {
-//           console.log(
-//             `-> Reason User: ${evaluation.Context.ReasonUser.Message}`
-//           );
-//         }
-//       }
-//     }
-//   }
-// }
+  // Check the authorization
+  const { decision, response } = await azClient.check(json_ok_onlyone);
+  if (decision) {
+    console.log("✅ Authorization Permitted");
+  } else {
+    console.log("❌ Authorization Denied");
+    if (response) {
+      if (response.Context?.ReasonAdmin) {
+        console.log(`-> Reason Admin: ${response.Context.ReasonAdmin.Message}`);
+      }
+      if (response.Context?.ReasonUser) {
+        console.log(`-> Reason User: ${response.Context.ReasonUser.Message}`);
+      }
+      for (const evaluation of response.Evaluations || []) {
+        if (evaluation.Context?.ReasonAdmin) {
+          console.log(
+            `-> Reason Admin: ${evaluation.Context.ReasonAdmin.Message}`
+          );
+        }
+        if (evaluation.Context?.ReasonUser) {
+          console.log(
+            `-> Reason User: ${evaluation.Context.ReasonUser.Message}`
+          );
+        }
+      }
+    }
+  }
+}
 
 /**
  * Checks an atomic evaluation.
@@ -255,7 +255,7 @@ async function checkMultipleEvaluations(): Promise<void> {
  * Main function.
  */
 async function main() {
-  // await checkJsonRequest();
+  await checkJsonRequest();
   await checkAtomicEvaluation();
   // await checkMultipleEvaluations();
 }

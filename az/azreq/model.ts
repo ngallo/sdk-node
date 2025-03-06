@@ -18,86 +18,86 @@
  * PolicyStore represents the Policy Store.
  */
 export interface PolicyStore {
-  Kind?: string;
-  ID?: string;
+  kind?: string;
+  id?: string;
 }
 
 /**
  * Entities represents the Entities.
  */
 export interface Entities {
-  Schema?: string;
-  Items?: Record<string, any>[];
+  schema?: string;
+  items?: Record<string, any>[];
 }
 
 /**
  * Evaluation is the Evaluation object.
  */
 export interface Evaluation {
-  RequestID?: string;
-  Subject?: Subject;
-  Resource?: Resource;
-  Action?: Action;
-  Context?: Record<string, any>;
+  request_id?: string;
+  subject?: Subject;
+  resource?: Resource;
+  action?: Action;
+  context?: Record<string, any>;
 }
 
 /**
- * azModel is the Authorization Model.
+ * AuthorizationModel is the Authorization Model.
  */
 export interface AZModel {
-  ZoneID: number;
-  Principal?: Principal;
-  PolicyStore?: PolicyStore;
-  Entities: Entities;
+  zone_id: number;
+  principal?: Principal;
+  policy_store?: PolicyStore;
+  entities: Entities;
 }
 
 /**
- * AZRequest is the AZRequest object.
+ * AuthorizationRequest is the Authorization Request object.
  */
 export interface AZRequest {
-  AZModel: AZModel;
-  RequestID?: string;
-  Subject?: Subject;
-  Resource?: Resource;
-  Action?: Action;
-  Context?: Record<string, any>;
-  Evaluations?: Evaluation[];
+  authorization_model: AZModel;
+  request_id?: string;
+  subject?: Subject;
+  resource?: Resource;
+  action?: Action;
+  context?: Record<string, any>;
+  evaluations?: Evaluation[];
 }
 
 /**
  * Principal is the principal object.
  */
 export interface Principal {
-  Type?: string;
-  ID?: string;
-  Source?: string;
+  type?: string;
+  id?: string;
+  source?: string;
 }
 
 /**
  * Subject is the subject object.
  */
 export interface Subject {
-  Type?: string;
-  ID?: string;
-  Source?: string;
-  Properties?: Record<string, any>;
+  type?: string;
+  id?: string;
+  source?: string;
+  properties?: Record<string, any>;
 }
 
 /**
  * Resource is the resource object.
  */
 export interface Resource {
-  Type?: string;
-  ID?: string;
-  Properties?: Record<string, any>;
+  type?: string;
+  id?: string;
+  properties?: Record<string, any>;
 }
 
 /**
  * Action is the action object.
  */
 export interface Action {
-  Name?: string;
-  Properties?: Record<string, any>;
+  name?: string;
+  properties?: Record<string, any>;
 }
 
 /**

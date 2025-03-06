@@ -27,8 +27,8 @@ export function mapPolicyStoreToGrpcPolicyStore(
   if (!policyStore) return null;
 
   return pdpGRPC.PolicyStore.create({
-    kind: policyStore.Kind,
-    iD: policyStore.ID,
+    kind: policyStore.kind,
+    iD: policyStore.id,
   });
 }
 
@@ -41,9 +41,9 @@ export function mapPrincipalToGrpcPrincipal(
   if (!principal) return null;
 
   return pdpGRPC.Principal.create({
-    type: principal.Type,
-    iD: principal.ID,
-    source: principal.Source,
+    type: principal.type,
+    iD: principal.id,
+    source: principal.source,
   });
 }
 
@@ -56,8 +56,8 @@ export function mapEntitiesToGrpcEntities(
   if (!entities) return null;
 
   return pdpGRPC.Entities.create({
-    schema: entities.Schema,
-    items: entities.Items?.map((item) => pb.Struct.fromJson(item)),
+    schema: entities.schema,
+    items: entities.items?.map((item) => pb.Struct.fromJson(item)),
   });
 }
 
@@ -70,11 +70,11 @@ export function mapSubjectToGrpcSubject(
   if (!subject) return null;
 
   return pdpGRPC.Subject.create({
-    type: subject.Type,
-    iD: subject.ID,
-    source: subject.Source,
-    properties: subject.Properties
-      ? pb.Struct.fromJson(subject.Properties)
+    type: subject.type,
+    iD: subject.id,
+    source: subject.source,
+    properties: subject.properties
+      ? pb.Struct.fromJson(subject.properties)
       : undefined,
   });
 }
@@ -88,10 +88,10 @@ export function mapResourceToGrpcResource(
   if (!resource) return null;
 
   return pdpGRPC.Resource.create({
-    type: resource.Type,
-    iD: resource.ID,
-    properties: resource.Properties
-      ? pb.Struct.fromJson(resource.Properties)
+    type: resource.type,
+    iD: resource.id,
+    properties: resource.properties
+      ? pb.Struct.fromJson(resource.properties)
       : undefined,
   });
 }
@@ -103,9 +103,9 @@ export function mapActionToGrpcAction(action: Action): pdpGRPC.Action | null {
   if (!action) return null;
 
   return pdpGRPC.Action.create({
-    name: action.Name,
-    properties: action.Properties
-      ? pb.Struct.fromJson(action.Properties)
+    name: action.name,
+    properties: action.properties
+      ? pb.Struct.fromJson(action.properties)
       : undefined,
   });
 }
@@ -119,18 +119,18 @@ export function mapEvaluationToGrpcEvaluationRequest(
   if (!evaluation) return null;
 
   return pdpGRPC.EvaluationRequest.create({
-    requestID: evaluation.RequestID,
-    subject: evaluation.Subject
-      ? mapSubjectToGrpcSubject(evaluation.Subject) ?? undefined
+    requestID: evaluation.request_id,
+    subject: evaluation.subject
+      ? mapSubjectToGrpcSubject(evaluation.subject) ?? undefined
       : undefined,
-    resource: evaluation.Resource
-      ? mapResourceToGrpcResource(evaluation.Resource) ?? undefined
+    resource: evaluation.resource
+      ? mapResourceToGrpcResource(evaluation.resource) ?? undefined
       : undefined,
-    action: evaluation.Action
-      ? mapActionToGrpcAction(evaluation.Action) ?? undefined
+    action: evaluation.action
+      ? mapActionToGrpcAction(evaluation.action) ?? undefined
       : undefined,
-    context: evaluation.Context
-      ? pb.Struct.fromJson(evaluation.Context)
+    context: evaluation.context
+      ? pb.Struct.fromJson(evaluation.context)
       : undefined,
   });
 }
@@ -144,15 +144,15 @@ export function mapAuthZModelToGrpcAuthorizationModelRequest(
   if (!azModel) return null;
 
   return pdpGRPC.AuthorizationModelRequest.create({
-    zoneID: BigInt(azModel.ZoneID),
-    policyStore: azModel.PolicyStore
-      ? mapPolicyStoreToGrpcPolicyStore(azModel.PolicyStore) ?? undefined
+    zoneID: BigInt(azModel.zone_id),
+    policyStore: azModel.policy_store
+      ? mapPolicyStoreToGrpcPolicyStore(azModel.policy_store) ?? undefined
       : undefined,
-    principal: azModel.Principal
-      ? mapPrincipalToGrpcPrincipal(azModel.Principal) ?? undefined
+    principal: azModel.principal
+      ? mapPrincipalToGrpcPrincipal(azModel.principal) ?? undefined
       : undefined,
-    entities: azModel.Entities
-      ? mapEntitiesToGrpcEntities(azModel.Entities) ?? undefined
+    entities: azModel.entities
+      ? mapEntitiesToGrpcEntities(azModel.entities) ?? undefined
       : undefined,
   });
 }
@@ -164,24 +164,25 @@ export function mapAZRequestToGrpcAuthorizationCheckRequest(
   azRequest: AZRequest
 ): pdpGRPC.AuthorizationCheckRequest {
   return pdpGRPC.AuthorizationCheckRequest.create({
-    requestID: azRequest.RequestID,
-    authorizationModel: azRequest.AZModel
-      ? mapAuthZModelToGrpcAuthorizationModelRequest(azRequest.AZModel) ??
-        undefined
+    requestID: azRequest.request_id,
+    authorizationModel: azRequest.authorization_model
+      ? mapAuthZModelToGrpcAuthorizationModelRequest(
+          azRequest.authorization_model
+        ) ?? undefined
       : undefined,
-    subject: azRequest.Subject
-      ? mapSubjectToGrpcSubject(azRequest.Subject) ?? undefined
+    subject: azRequest.subject
+      ? mapSubjectToGrpcSubject(azRequest.subject) ?? undefined
       : undefined,
-    resource: azRequest.Resource
-      ? mapResourceToGrpcResource(azRequest.Resource) ?? undefined
+    resource: azRequest.resource
+      ? mapResourceToGrpcResource(azRequest.resource) ?? undefined
       : undefined,
-    action: azRequest.Action
-      ? mapActionToGrpcAction(azRequest.Action) ?? undefined
+    action: azRequest.action
+      ? mapActionToGrpcAction(azRequest.action) ?? undefined
       : undefined,
-    context: azRequest.Context
-      ? pb.Struct.fromJson(azRequest.Context)
+    context: azRequest.context
+      ? pb.Struct.fromJson(azRequest.context)
       : undefined,
-    evaluations: azRequest.Evaluations?.map(
+    evaluations: azRequest.evaluations?.map(
       (evaluation) => mapEvaluationToGrpcEvaluationRequest(evaluation)!
     ),
   });

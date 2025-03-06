@@ -36,18 +36,18 @@ export class AZRequestBuilder {
    */
   constructor(zoneID: number, ledgerID: string) {
     this.azRequest = {
-      AZModel: {
-        ZoneID: zoneID,
-        PolicyStore: {
-          Kind: "ledger",
-          ID: ledgerID,
+      authorization_model: {
+        zone_id: zoneID,
+        policy_store: {
+          kind: "ledger",
+          id: ledgerID,
         },
-        Entities: {
-          Schema: "",
-          Items: [],
+        entities: {
+          schema: "",
+          items: [],
         },
       },
-      Evaluations: [],
+      evaluations: [],
     };
   }
 
@@ -57,7 +57,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withPrincipal(principal?: Principal): AZRequestBuilder {
-    this.azRequest.AZModel.Principal = principal;
+    this.azRequest.authorization_model.principal = principal;
     return this;
   }
 
@@ -67,7 +67,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withRequestID(requestID?: string): AZRequestBuilder {
-    this.azRequest.RequestID = requestID;
+    this.azRequest.request_id = requestID;
     return this;
   }
 
@@ -77,7 +77,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withSubject(subject: Subject): AZRequestBuilder {
-    this.azRequest.Subject = subject;
+    this.azRequest.subject = subject;
     return this;
   }
 
@@ -87,7 +87,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withResource(resource: Resource): AZRequestBuilder {
-    this.azRequest.Resource = resource;
+    this.azRequest.resource = resource;
     return this;
   }
 
@@ -97,7 +97,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withAction(action: Action): AZRequestBuilder {
-    this.azRequest.Action = action;
+    this.azRequest.action = action;
     return this;
   }
 
@@ -107,7 +107,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withContext(context: Record<string, any>): AZRequestBuilder {
-    this.azRequest.Context = context;
+    this.azRequest.context = context;
     return this;
   }
 
@@ -121,8 +121,8 @@ export class AZRequestBuilder {
     schema: string,
     entities: Record<string, any>
   ): AZRequestBuilder {
-    this.azRequest.AZModel.Entities.Schema = schema;
-    this.azRequest.AZModel.Entities.Items = [entities];
+    this.azRequest.authorization_model.entities.schema = schema;
+    this.azRequest.authorization_model.entities.items = [entities];
     return this;
   }
 
@@ -136,11 +136,11 @@ export class AZRequestBuilder {
     schema: string,
     entities?: Record<string, any>[]
   ): AZRequestBuilder {
-    this.azRequest.AZModel.Entities.Schema = schema;
-    this.azRequest.AZModel.Entities.Items = entities;
+    this.azRequest.authorization_model.entities.schema = schema;
+    this.azRequest.authorization_model.entities.items = entities;
 
-    if (!this.azRequest.AZModel.Entities.Items) {
-      this.azRequest.AZModel.Entities.Items = [];
+    if (!this.azRequest.authorization_model.entities.items) {
+      this.azRequest.authorization_model.entities.items = [];
     }
 
     return this;
@@ -152,7 +152,7 @@ export class AZRequestBuilder {
    * @returns The AZRequestBuilder instance for method chaining.
    */
   withEvaluation(evaluation: Evaluation): AZRequestBuilder {
-    this.azRequest.Evaluations?.push(evaluation);
+    this.azRequest.evaluations?.push(evaluation);
     return this;
   }
 
