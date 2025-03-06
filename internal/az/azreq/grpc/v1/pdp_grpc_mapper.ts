@@ -23,12 +23,12 @@ import {
  */
 export function mapPolicyStoreToGrpcPolicyStore(
   policyStore: PolicyStore
-): pdpGRPC.policydecisionpoint.PolicyStore | null {
+): pdpGRPC.PolicyStore | null {
   if (!policyStore) return null;
 
-  return new pdpGRPC.policydecisionpoint.PolicyStore({
-    Kind: policyStore.Kind,
-    ID: policyStore.ID,
+  return pdpGRPC.PolicyStore.create({
+    kind: policyStore.Kind,
+    iD: policyStore.ID,
   });
 }
 
@@ -37,15 +37,14 @@ export function mapPolicyStoreToGrpcPolicyStore(
  */
 export function mapPrincipalToGrpcPrincipal(
   principal: Principal
-): pdpGRPC.policydecisionpoint.Principal | null {
+): pdpGRPC.Principal | null {
   if (!principal) return null;
 
-  const grpcPrincipal = new pdpGRPC.policydecisionpoint.Principal({
-    Type: principal.Type,
-    ID: principal.ID,
+  return pdpGRPC.Principal.create({
+    type: principal.Type,
+    iD: principal.ID,
+    source: principal.Source,
   });
-  if (principal.Source) grpcPrincipal.Source = principal.Source;
-  return grpcPrincipal;
 }
 
 /**
@@ -53,19 +52,13 @@ export function mapPrincipalToGrpcPrincipal(
  */
 export function mapEntitiesToGrpcEntities(
   entities: Entities
-): pdpGRPC.policydecisionpoint.Entities | null {
+): pdpGRPC.Entities | null {
   if (!entities) return null;
 
-  const grpcEntities = new pdpGRPC.policydecisionpoint.Entities({
-    Schema: entities.Schema,
+  return pdpGRPC.Entities.create({
+    schema: entities.Schema,
+    items: entities.Items?.map((item) => pb.Struct.fromJson(item)),
   });
-
-  if (entities.Items) {
-    grpcEntities.Items = entities.Items.map((item) =>
-      pb.google.protobuf.Struct.fromObject(item)
-    );
-  }
-  return grpcEntities;
 }
 
 /**
@@ -73,21 +66,17 @@ export function mapEntitiesToGrpcEntities(
  */
 export function mapSubjectToGrpcSubject(
   subject: Subject
-): pdpGRPC.policydecisionpoint.Subject | null {
+): pdpGRPC.Subject | null {
   if (!subject) return null;
 
-  const grpcSubject = new pdpGRPC.policydecisionpoint.Subject({
-    Type: subject.Type,
-    ID: subject.ID,
+  return pdpGRPC.Subject.create({
+    type: subject.Type,
+    iD: subject.ID,
+    source: subject.Source,
+    properties: subject.Properties
+      ? pb.Struct.fromJson(subject.Properties)
+      : undefined,
   });
-
-  if (subject.Source) grpcSubject.Source = subject.Source;
-  if (subject.Properties) {
-    grpcSubject.Properties = pb.google.protobuf.Struct.fromObject(
-      subject.Properties
-    );
-  }
-  return grpcSubject;
 }
 
 /**
@@ -95,42 +84,30 @@ export function mapSubjectToGrpcSubject(
  */
 export function mapResourceToGrpcResource(
   resource: Resource
-): pdpGRPC.policydecisionpoint.Resource | null {
+): pdpGRPC.Resource | null {
   if (!resource) return null;
 
-  const grpcResource = new pdpGRPC.policydecisionpoint.Resource({
-    Type: resource.Type,
-    ID: resource.ID,
+  return pdpGRPC.Resource.create({
+    type: resource.Type,
+    iD: resource.ID,
+    properties: resource.Properties
+      ? pb.Struct.fromJson(resource.Properties)
+      : undefined,
   });
-
-  if (resource.Properties) {
-    grpcResource.Properties = pb.google.protobuf.Struct.fromObject(
-      resource.Properties
-    );
-  }
-
-  return grpcResource;
 }
 
 /**
  * Maps the client Action to the gRPC Action.
  */
-export function mapActionToGrpcAction(
-  action: Action
-): pdpGRPC.policydecisionpoint.Action | null {
+export function mapActionToGrpcAction(action: Action): pdpGRPC.Action | null {
   if (!action) return null;
 
-  const grpcAction = new pdpGRPC.policydecisionpoint.Action({
-    Name: action.Name,
+  return pdpGRPC.Action.create({
+    name: action.Name,
+    properties: action.Properties
+      ? pb.Struct.fromJson(action.Properties)
+      : undefined,
   });
-
-  if (action.Properties) {
-    grpcAction.Properties = pb.google.protobuf.Struct.fromObject(
-      action.Properties
-    );
-  }
-
-  return grpcAction;
 }
 
 /**
@@ -138,32 +115,24 @@ export function mapActionToGrpcAction(
  */
 export function mapEvaluationToGrpcEvaluationRequest(
   evaluation: Evaluation
-): pdpGRPC.policydecisionpoint.EvaluationRequest | null {
+): pdpGRPC.EvaluationRequest | null {
   if (!evaluation) return null;
 
-  const grpcEvaluation = new pdpGRPC.policydecisionpoint.EvaluationRequest({
-    RequestID: evaluation.RequestID,
+  return pdpGRPC.EvaluationRequest.create({
+    requestID: evaluation.RequestID,
+    subject: evaluation.Subject
+      ? mapSubjectToGrpcSubject(evaluation.Subject) ?? undefined
+      : undefined,
+    resource: evaluation.Resource
+      ? mapResourceToGrpcResource(evaluation.Resource) ?? undefined
+      : undefined,
+    action: evaluation.Action
+      ? mapActionToGrpcAction(evaluation.Action) ?? undefined
+      : undefined,
+    context: evaluation.Context
+      ? pb.Struct.fromJson(evaluation.Context)
+      : undefined,
   });
-
-  if (evaluation.Subject) {
-    grpcEvaluation.Subject = mapSubjectToGrpcSubject(evaluation.Subject)!;
-  }
-
-  if (evaluation.Resource) {
-    grpcEvaluation.Resource = mapResourceToGrpcResource(evaluation.Resource)!;
-  }
-
-  if (evaluation.Action) {
-    grpcEvaluation.Action = mapActionToGrpcAction(evaluation.Action)!;
-  }
-
-  if (evaluation.Context) {
-    grpcEvaluation.Context = pb.google.protobuf.Struct.fromObject(
-      evaluation.Context
-    );
-  }
-
-  return grpcEvaluation;
 }
 
 /**
@@ -171,28 +140,21 @@ export function mapEvaluationToGrpcEvaluationRequest(
  */
 export function mapAuthZModelToGrpcAuthorizationModelRequest(
   azModel: AZModel
-): pdpGRPC.policydecisionpoint.AuthorizationModelRequest | null {
+): pdpGRPC.AuthorizationModelRequest | null {
   if (!azModel) return null;
 
-  const grpcModel = new pdpGRPC.policydecisionpoint.AuthorizationModelRequest({
-    ZoneID: azModel.ZoneID,
+  return pdpGRPC.AuthorizationModelRequest.create({
+    zoneID: BigInt(azModel.ZoneID),
+    policyStore: azModel.PolicyStore
+      ? mapPolicyStoreToGrpcPolicyStore(azModel.PolicyStore) ?? undefined
+      : undefined,
+    principal: azModel.Principal
+      ? mapPrincipalToGrpcPrincipal(azModel.Principal) ?? undefined
+      : undefined,
+    entities: azModel.Entities
+      ? mapEntitiesToGrpcEntities(azModel.Entities) ?? undefined
+      : undefined,
   });
-
-  if (azModel.PolicyStore) {
-    grpcModel.PolicyStore = mapPolicyStoreToGrpcPolicyStore(
-      azModel.PolicyStore
-    )!;
-  }
-
-  if (azModel.Principal) {
-    grpcModel.Principal = mapPrincipalToGrpcPrincipal(azModel.Principal)!;
-  }
-
-  if (azModel.Entities) {
-    grpcModel.Entities = mapEntitiesToGrpcEntities(azModel.Entities)!;
-  }
-
-  return grpcModel;
 }
 
 /**
@@ -200,43 +162,29 @@ export function mapAuthZModelToGrpcAuthorizationModelRequest(
  */
 export function mapAZRequestToGrpcAuthorizationCheckRequest(
   azRequest: AZRequest
-): pdpGRPC.policydecisionpoint.AuthorizationCheckRequest {
-  const grpcRequest = new pdpGRPC.policydecisionpoint.AuthorizationCheckRequest(
-    {
-      RequestID: azRequest.RequestID,
-    }
-  );
-
-  if (azRequest.AZModel) {
-    grpcRequest.AuthorizationModel =
-      mapAuthZModelToGrpcAuthorizationModelRequest(azRequest.AZModel)!;
-  }
-
-  if (azRequest.Subject) {
-    grpcRequest.Subject = mapSubjectToGrpcSubject(azRequest.Subject)!;
-  }
-
-  if (azRequest.Resource) {
-    grpcRequest.Resource = mapResourceToGrpcResource(azRequest.Resource)!;
-  }
-
-  if (azRequest.Action) {
-    grpcRequest.Action = mapActionToGrpcAction(azRequest.Action)!;
-  }
-
-  if (azRequest.Context) {
-    grpcRequest.Context = pb.google.protobuf.Struct.fromObject(
-      azRequest.Context
-    );
-  }
-
-  if (azRequest.Evaluations) {
-    grpcRequest.Evaluations = azRequest.Evaluations.map(
+): pdpGRPC.AuthorizationCheckRequest {
+  return pdpGRPC.AuthorizationCheckRequest.create({
+    requestID: azRequest.RequestID,
+    authorizationModel: azRequest.AZModel
+      ? mapAuthZModelToGrpcAuthorizationModelRequest(azRequest.AZModel) ??
+        undefined
+      : undefined,
+    subject: azRequest.Subject
+      ? mapSubjectToGrpcSubject(azRequest.Subject) ?? undefined
+      : undefined,
+    resource: azRequest.Resource
+      ? mapResourceToGrpcResource(azRequest.Resource) ?? undefined
+      : undefined,
+    action: azRequest.Action
+      ? mapActionToGrpcAction(azRequest.Action) ?? undefined
+      : undefined,
+    context: azRequest.Context
+      ? pb.Struct.fromJson(azRequest.Context)
+      : undefined,
+    evaluations: azRequest.Evaluations?.map(
       (evaluation) => mapEvaluationToGrpcEvaluationRequest(evaluation)!
-    );
-  }
-
-  return grpcRequest;
+    ),
+  });
 }
 
 // Response Mappers
@@ -245,13 +193,13 @@ export function mapAZRequestToGrpcAuthorizationCheckRequest(
  * Maps the gRPC ReasonResponse to the client ReasonResponse.
  */
 export function mapGrpcReasonResponseToReasonResponse(
-  reasonResponse: pdpGRPC.policydecisionpoint.ReasonResponse
+  reasonResponse: pdpGRPC.ReasonResponse
 ): ReasonResponse | null {
   if (!reasonResponse) return null;
 
   return {
-    Code: reasonResponse.Code,
-    Message: reasonResponse.Message,
+    Code: reasonResponse.code,
+    Message: reasonResponse.message,
   };
 }
 
@@ -259,72 +207,52 @@ export function mapGrpcReasonResponseToReasonResponse(
  * Maps the gRPC ContextResponse to the client ContextResponse.
  */
 export function mapGrpcContextResponseToContextResponse(
-  contextResponse: pdpGRPC.policydecisionpoint.ContextResponse
+  contextResponse: pdpGRPC.ContextResponse
 ): ContextResponse | null {
   if (!contextResponse) return null;
-  const clientContext: ContextResponse = {
-    ID: contextResponse.ID,
+
+  return {
+    ID: contextResponse.iD,
+    ReasonAdmin: contextResponse.reasonAdmin
+      ? mapGrpcReasonResponseToReasonResponse(contextResponse.reasonAdmin)
+      : undefined,
+    ReasonUser: contextResponse.reasonUser
+      ? mapGrpcReasonResponseToReasonResponse(contextResponse.reasonUser)
+      : null,
   };
-
-  if (contextResponse.ReasonAdmin) {
-    clientContext.ReasonAdmin = mapGrpcReasonResponseToReasonResponse(
-      contextResponse.ReasonAdmin
-    )!;
-  }
-
-  if (contextResponse.ReasonUser) {
-    clientContext.ReasonUser = mapGrpcReasonResponseToReasonResponse(
-      contextResponse.ReasonUser
-    )!;
-  }
-
-  return clientContext;
 }
 
 /**
  * Maps the gRPC EvaluationResponse to the client EvaluationResponse.
  */
 export function mapGrpcEvaluationResponseToEvaluationResponse(
-  evaluationResponse: pdpGRPC.policydecisionpoint.EvaluationResponse
+  evaluationResponse: pdpGRPC.EvaluationResponse
 ): EvaluationResponse | null {
   if (!evaluationResponse) return null;
 
-  const clientEvaluation: EvaluationResponse = {
-    Decision: evaluationResponse.Decision,
-    RequestID: evaluationResponse.RequestID || "",
+  return {
+    Decision: evaluationResponse.decision,
+    RequestID: evaluationResponse.requestID || "",
+    Context: evaluationResponse.context
+      ? mapGrpcContextResponseToContextResponse(evaluationResponse.context)
+      : undefined,
   };
-
-  if (evaluationResponse.Context) {
-    clientEvaluation.Context = mapGrpcContextResponseToContextResponse(
-      evaluationResponse.Context
-    )!;
-  }
-
-  return clientEvaluation;
 }
 
 /**
  * Maps the gRPC AuthorizationCheckResponse to the client AZResponse.
  */
 export function mapGrpcAuthorizationCheckResponseToAZResponse(
-  response: pdpGRPC.policydecisionpoint.AuthorizationCheckResponse
+  response: pdpGRPC.AuthorizationCheckResponse
 ): AZResponse {
-  const clientResponse: AZResponse = {
-    Decision: response.Decision,
-    RequestID: response.RequestID || "",
-  };
-
-  if (response.Context) {
-    clientResponse.Context = mapGrpcContextResponseToContextResponse(
-      response.Context
-    )!;
-  }
-
-  if (response.Evaluations) {
-    clientResponse.Evaluations = response.Evaluations.map(
+  return {
+    Decision: response.decision,
+    RequestID: response.requestID || "",
+    Context: response.context
+      ? mapGrpcContextResponseToContextResponse(response.context)
+      : undefined,
+    Evaluations: response.evaluations?.map(
       (evaluation) => mapGrpcEvaluationResponseToEvaluationResponse(evaluation)!
-    );
-  }
-
-  return clientResponse;
+    ),
+  };
 }

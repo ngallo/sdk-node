@@ -62,9 +62,7 @@ export class AZClient {
    *   - The full authorization response.
    *   - An error, if any.
    */
-  async check(
-    req: AZRequest
-  ): Promise<{
+  async check(req: AZRequest): Promise<{
     decision: boolean;
     response: AZResponse | null;
     error: Error | null;
@@ -81,9 +79,6 @@ export class AZClient {
       const error = err instanceof Error ? err : new Error(String(err));
 
       return { decision: false, response: null, error };
-    } finally {
-      // Close the gRPC client connection
-      pdpClient.close();
     }
   }
 }

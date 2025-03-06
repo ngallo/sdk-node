@@ -113,8 +113,8 @@ export interface ReasonResponse {
  */
 export interface ContextResponse {
   ID?: string;
-  ReasonAdmin?: ReasonResponse;
-  ReasonUser?: ReasonResponse;
+  ReasonAdmin?: ReasonResponse | null;
+  ReasonUser?: ReasonResponse | null;
 }
 
 /**
@@ -123,7 +123,7 @@ export interface ContextResponse {
 export interface EvaluationResponse {
   RequestID?: string;
   Decision?: boolean;
-  Context?: ContextResponse;
+  Context?: ContextResponse | null;
 }
 
 /**
@@ -132,6 +132,6 @@ export interface EvaluationResponse {
 export interface AZResponse {
   RequestID?: string;
   Decision: boolean;
-  Context?: ContextResponse;
+  Context?: ContextResponse | null;
   Evaluations?: EvaluationResponse[];
 }

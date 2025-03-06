@@ -4,23 +4,20 @@
   "description": "[![GitHub License](https://img.shields.io/github/license/permguard/permguard-node)](https://github.com/permguard/permguard-node?tab=Apache-2.0-1-ov-file#readme)\r [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/permguard)](https://x.com/intent/follow?original_referer=https%3A%2F%2Fdeveloper.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5ETwitterDev&screen_name=Permguard)",
   "main": "index.js",
   "scripts": {
-    "ptotoc-generate": "npx protoc --proto_path=. --plugin=protoc-gen-ts=node_modules\\.bin\\protoc-gen-ts.cmd --plugin=protoc-gen-grpc=node_modules\\.bin\\protoc-gen-grpc-web.cmd --js_out=import_style=commonjs,binary:.\\internal\\az\\azreq\\generated --ts_out=service=grpc-web:.\\internal\\az\\azreq\\generated proto\\v1\\pdp.proto"
+    "generate-grpc": "npx protoc --ts_out internal/az/azreq/grpc/v1/generated --proto_path . proto/v1/pdp.proto"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/google-protobuf": "^3.15.12",
+    "@protobuf-ts/plugin": "^2.9.4",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.9",
-    "protoc-gen-grpc-web": "^1.5.0",
-    "protoc-gen-ts": "^0.8.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.12.6",
-    "google-protobuf": "^3.21.4",
+    "@protobuf-ts/grpc-transport": "^2.9.4",
     "lodash": "^4.17.21"
   }
 }

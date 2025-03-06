@@ -94,15 +94,15 @@ async function checkAtomicEvaluation(): Promise<void> {
 
   // Create a new authorization request
   const req = new AZAtomicRequestBuilder(
-    758156088958,
-    "d0cbe58fa88b425b919c6381a7e61ec2",
+    856808969904,
+    "17d5a9fb74474218b9dcd43b8861cda5",
     "amy.smith@acmecorp.com",
     "MagicFarmacia::Platform::Subscription",
     "MagicFarmacia::Platform::Action::view"
   )
     .withRequestID("1234")
     .withPrincipal(principal)
-    .withEntitiesItems("CedarEntityKind", entities)
+    .withEntitiesItems("cedar", entities)
     .withSubjectKind("user")
     .withSubjectSource("keycloack")
     .withSubjectProperty("isSuperUser", true)
@@ -213,11 +213,11 @@ async function checkMultipleEvaluations(): Promise<void> {
 
   // Create a new authorization request
   const req = new AZRequestBuilder(
-    758156088958,
-    "d0cbe58fa88b425b919c6381a7e61ec2"
+    856808969904,
+    "17d5a9fb74474218b9dcd43b8861cda5"
   )
     .withPrincipal(principal)
-    .withEntitiesItems("CedarEntityKind", entities)
+    .withEntitiesItems("cedar", entities)
     .withEvaluation(evaluationView)
     .withEvaluation(evaluationCreate)
     .build();
