@@ -14,7 +14,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// Load JSON file (embedded in Go, but in TypeScript, we can use `import` or `fs`)
 import {
   PrincipalBuilder,
   AZAtomicRequestBuilder,
