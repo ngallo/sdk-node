@@ -4,10 +4,14 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx ts-node src/index"
   },
   "dependencies": {
     "permguard-node": "1.0.0"
+  },
+  "devDependencies": {
+    "ts-node": "10.9.2",
+    "typescript": "5.8.2"
   },
   "author": "",
   "license": "ISC"
