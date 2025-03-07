@@ -7,7 +7,7 @@
     "start": "npx ts-node src/index"
   },
   "dependencies": {
-    "permguard-node": "1.0.0"
+    "permguard-sdk": "1.0.0"
   },
   "devDependencies": {
     "ts-node": "10.9.2",

@@ -27,13 +27,13 @@ Please refer to the [Permguard Documentation](https://www.permguard.com/) for mo
 Run the following command to install the SDK:
 
 ```bash
-npm install permguard-node
+npm install permguard-sdk
 ```
 
 or with Yarn:
 
 ```bash
-yarn add permguard-node
+yarn add permguard-sdk
 ```
 
 ---
@@ -48,7 +48,7 @@ import {
   AZAtomicRequestBuilder,
   withEndpoint,
   AZClient,
-} from "permguard-node";
+} from "permguard-sdk";
 
 // Create a new Permguard client
 const azClient = new AZClient(withEndpoint("localhost", 9094));
