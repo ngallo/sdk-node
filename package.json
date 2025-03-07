@@ -1,0 +1,32 @@
+{
+  "name": "permguard-node",
+  "version": "1.0.0",
+  "description": "[![GitHub License](https://img.shields.io/github/license/permguard/permguard-node)](https://github.com/permguard/permguard-node?tab=Apache-2.0-1-ov-file#readme)\r [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/permguard)](https://x.com/intent/follow?original_referer=https%3A%2F%2Fdeveloper.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5ETwitterDev&screen_name=Permguard)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate-grpc": "npx protoc --ts_out src/internal/az/azreq/grpc/v1/generated --proto_path ./src src/proto/v1/pdp.proto",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "NitroAgility",
+  "license": "ISC",
+  "devDependencies": {
+    "@protobuf-ts/plugin": "2.9.4",
+    "@types/lodash": "4.17.16",
+    "@types/node": "22.13.9",
+    "ts-node": "10.9.2",
+    "tsup": "8.4.0",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "1.12.6",
+    "@protobuf-ts/grpc-transport": "2.9.4",
+    "@protobuf-ts/runtime-rpc": "2.9.4",
+    "lodash": "4.17.21"
+  }
+}

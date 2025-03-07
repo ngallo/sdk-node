@@ -1,0 +1,86 @@
+{
+  "authorization_model": {
+    "zone_id": 583438038653,
+    "policy_store": {
+      "kind": "ledger",
+      "id": "46706cb00ea248d6841cfe2c9f02205b"
+    },
+    "entities": {
+      "schema": "cedar",
+      "items": [
+        {
+          "uid": {
+            "type": "MagicFarmacia::Platform::BranchInfo",
+            "id": "subscription"
+          },
+          "attrs": {
+            "active": true
+          },
+          "parents": []
+        }
+      ]
+    },
+    "principal": {
+      "type": "user",
+      "id": "amy.smith@acmecorp.com"
+    }
+  },
+  "evaluations": [
+    {
+      "subject": {
+        "type": "ROLE-ACTOR",
+        "id": "platform-creator",
+        "source": "keycloack",
+        "properties": {
+          "isSuperUser": true
+        }
+      },
+      "resource": {
+        "type": "MagicFarmacia::Platform::Subscription",
+        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "action": {
+        "name": "MagicFarmacia::Platform::Action::create",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "request_id": "1234",
+      "context": {
+        "time": "2025-01-23T16:17:46+00:00",
+        "isSubscriptionActive": true
+      }
+    },
+    {
+      "subject": {
+        "type": "ROLE-ACTOR",
+        "id": "platform-creator",
+        "source": "keycloack",
+        "properties": {
+          "isSuperUser": true
+        }
+      },
+      "resource": {
+        "type": "MagicFarmacia::Platform::Subscription",
+        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "action": {
+        "name": "MagicFarmacia::Platform::Action::create",
+        "properties": {
+          "isEnabled": true
+        }
+      },
+      "request_id": "7890",
+      "context": {
+        "time": "2025-01-23T16:17:46+00:00",
+        "isSubscriptionActive": true
+      }
+    }
+  ]
+}
