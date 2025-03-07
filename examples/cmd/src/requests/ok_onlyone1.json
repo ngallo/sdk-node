@@ -1,9 +1,14 @@
 {
   "authorization_model": {
-    "zone_id": 583438038653,
+    "zone_id": 633687665465,
     "policy_store": {
-      "kind": "ledger",
-      "id": "46706cb00ea248d6841cfe2c9f02205b"
+      "type": "ledger",
+      "id": "fc260e783b0c4bd6aa88eed18f57aab3"
+    },
+    "principal": {
+      "type": "user",
+      "id": "amy.smith@acmecorp.com",
+      "source": "keycloak"
     },
     "entities": {
       "schema": "cedar",
@@ -19,68 +24,32 @@
           "parents": []
         }
       ]
-    },
-    "principal": {
-      "type": "user",
-      "id": "amy.smith@acmecorp.com"
     }
   },
-  "evaluations": [
-    {
-      "subject": {
-        "type": "ROLE-ACTOR",
-        "id": "platform-creator",
-        "source": "keycloack",
-        "properties": {
-          "isSuperUser": true
-        }
-      },
-      "resource": {
-        "type": "MagicFarmacia::Platform::Subscription",
-        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
-        "properties": {
-          "isEnabled": true
-        }
-      },
-      "action": {
-        "name": "MagicFarmacia::Platform::Action::create",
-        "properties": {
-          "isEnabled": true
-        }
-      },
-      "request_id": "1234",
-      "context": {
-        "time": "2025-01-23T16:17:46+00:00",
-        "isSubscriptionActive": true
-      }
-    },
-    {
-      "subject": {
-        "type": "ROLE-ACTOR",
-        "id": "platform-creator",
-        "source": "keycloack",
-        "properties": {
-          "isSuperUser": true
-        }
-      },
-      "resource": {
-        "type": "MagicFarmacia::Platform::Subscription",
-        "id": "e3a786fd07e24bfa95ba4341d3695ae8",
-        "properties": {
-          "isEnabled": true
-        }
-      },
-      "action": {
-        "name": "MagicFarmacia::Platform::Action::create",
-        "properties": {
-          "isEnabled": true
-        }
-      },
-      "request_id": "7890",
-      "context": {
-        "time": "2025-01-23T16:17:46+00:00",
-        "isSubscriptionActive": true
-      }
+  "request_id": "abc1",
+  "subject": {
+    "type": "role-actor",
+    "id": "platform-creator",
+    "source": "keycloak",
+    "properties": {
+      "isSuperUser": true
     }
-  ]
+  },
+  "resource": {
+    "type": "MagicFarmacia::Platform::Subscription",
+    "id": "e3a786fd07e24bfa95ba4341d3695ae8",
+    "properties": {
+      "isEnabled": true
+    }
+  },
+  "action": {
+    "name": "MagicFarmacia::Platform::Action::create",
+    "properties": {
+      "isEnabled": true
+    }
+  },
+  "context": {
+    "time": "2025-01-23T16:17:46+00:00",
+    "isSubscriptionActive": true
+  }
 }
