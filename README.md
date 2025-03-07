@@ -17,7 +17,7 @@ Please refer to the [Permguard Documentation](https://www.permguard.com/) for mo
 
 ## Prerequisites
 
-- **Node.js 18.x or later**
+- **Node.js 20.x or later**
 - **TypeScript 5.8 or later** (if using TypeScript)
 
 ---
