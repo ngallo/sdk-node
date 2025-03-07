@@ -24,12 +24,6 @@ protoc:
 check:
 	staticcheck  ./...
 
-lint:
-	npx eslint --ext .ts ./src
-
-lint-fix:
-	npx eslint --ext .ts ./src --fix
-
 test:
 	npx jest
 
@@ -55,4 +49,4 @@ build:
 # under parallel conditions.
 .NOTPARALLEL:
 
-.PHONY: clean lint lint-fix protoc test teste2e coverage coverage-json coverage-plugin build
+.PHONY: clean protoc test teste2e coverage coverage-json coverage-plugin build
