@@ -33,7 +33,7 @@ npm install permguard
 or with Yarn:
 
 ```bash
-yarn add permguard-sdk
+yarn add permguard
 ```
 
 ---
@@ -48,7 +48,7 @@ import {
   AZAtomicRequestBuilder,
   withEndpoint,
   AZClient,
-} from "permguard-sdk";
+} from "permguard";
 
 // Create a new Permguard client
 const azClient = new AZClient(withEndpoint("localhost", 9094));

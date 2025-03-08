@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "permguard-sdk": ["node_modules/permguard-sdk"]
+      "permguard": ["node_modules/permguard"]
     },
     "target": "es2017",
     "module": "commonjs",

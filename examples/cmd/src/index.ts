@@ -25,7 +25,7 @@ import {
   AZRequestBuilder,
   withEndpoint,
   AZClient,
-} from "permguard-sdk";
+} from "permguard";
 import json_ok_onlyone from "./requests/ok_onlyone1.json";
 
 /**
