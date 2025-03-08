@@ -27,7 +27,7 @@ Please refer to the [Permguard Documentation](https://www.permguard.com/) for mo
 Run the following command to install the SDK:
 
 ```bash
-npm install permguard-sdk
+npm install permguard
 ```
 
 or with Yarn:
