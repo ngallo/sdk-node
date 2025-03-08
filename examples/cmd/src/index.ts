@@ -254,8 +254,8 @@ async function checkMultipleEvaluations(): Promise<void> {
  */
 async function main() {
   await checkJsonRequest();
-  await checkAtomicEvaluation();
-  await checkMultipleEvaluations();
+  //await checkAtomicEvaluation();
+  //await checkMultipleEvaluations();
 }
 
 main();
