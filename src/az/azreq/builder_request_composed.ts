@@ -14,6 +14,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+import _ from "lodash";
 import {
   AZRequest,
   Evaluation,
@@ -161,6 +162,6 @@ export class AZRequestBuilder {
    * @returns The constructed AZRequest object.
    */
   build(): AZRequest {
-    return this.azRequest;
+    return _.cloneDeep(this.azRequest);
   }
 }
