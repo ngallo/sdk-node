@@ -1,32 +1,46 @@
 # Permguard Node.js SDK Example
 
-Simple example demonstrating Permguard Node.js SDK usage.
+A comprehensive example demonstrating how to use the Permguard Node.js SDK for authorization and permission checks in your applications.
 
 ## Running the Example
 
-1. **Install dependencies**
+1. **Build the library**
 
    ```bash
    npm install
+   npm run build
+   npm link
    ```
 
-2. **Start Permguard PDP Service**
+2. **Install dependencies in the example app folder**
+
+   ```bash
+   cd ./examples/cmd
+   npm install
+   ```
+
+3. **Link the Permguard library to the example**
+
+   ```bash
+   npm link permguard
+   ```
+
+4. **Start Permguard PDP Service**
+
    Ensure your Permguard PDP service is running on localhost:9094.
 
-3. **Run the example**
+   If you need to configure a different address, you can update it in the example configuration.
+
+5. **Run the example**
 
    ```bash
    npm run start
    ```
 
-   Or directly with ts-node:
+## Features Demonstrated
 
-   ```bash
-   npx ts-node src/examples.ts
-   ```
+This example demonstrates several key features of the Permguard Node.js SDK:
 
-## Example includes
-
-- JSON request check
-- Atomic evaluation check
-- Multiple evaluations check
+- **JSON Request Check**
+- **Atomic Evaluation Check**
+- **Multiple Evaluation Check**
