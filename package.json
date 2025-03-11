@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "author": "NitroAgility",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@protobuf-ts/plugin": "2.9.4",
     "@types/lodash": "4.17.16",
