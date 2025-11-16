@@ -83,20 +83,11 @@ export class SubjectBuilder {
   }
 
   /**
-   * Sets the type of the subject to RoleActorType.
+   * Sets the type of the subject to WorkloadType.
    * @returns The SubjectBuilder instance for method chaining.
    */
-  withRoleActorType(): SubjectBuilder {
-    this.subject.type = ActorType.RoleActorType;
-    return this;
-  }
-
-  /**
-   * Sets the type of the subject to TwinActorType.
-   * @returns The SubjectBuilder instance for method chaining.
-   */
-  withTwinActorType(): SubjectBuilder {
-    this.subject.type = ActorType.TwinActorType;
+  withWorkloadType(): SubjectBuilder {
+    this.subject.type = ActorType.WorkloadType;
     return this;
   }
 

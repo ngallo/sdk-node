@@ -99,7 +99,7 @@ async function checkAtomicEvaluation(): Promise<void> {
     .withRequestID("1234")
     .withPrincipal(principal)
     .withEntitiesItems("cedar", entities)
-    .withSubjectRoleActorType()
+    .withSubjectWorkloadType()
     .withSubjectSource("keycloack")
     .withSubjectProperty("isSuperUser", true)
     .withResourceID("e3a786fd07e24bfa95ba4341d3695ae8")
@@ -147,7 +147,7 @@ async function checkMultipleEvaluations(): Promise<void> {
 
   // Create a new subject
   const subject = new SubjectBuilder("platform-creator")
-    .withRoleActorType()
+    .withWorkloadType()
     .withSource("keycloack")
     .withProperty("isSuperUser", true)
     .build();

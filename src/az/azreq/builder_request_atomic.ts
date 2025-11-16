@@ -187,20 +187,11 @@ export class AZAtomicRequestBuilder {
   }
 
   /**
-   * Sets the type of the subject to RoleActorType.
+   * Sets the type of the subject to WorkloadType.
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
-  withSubjectRoleActorType(): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(ActorType.RoleActorType);
-    return this;
-  }
-
-  /**
-   * Sets the type of the subject to TwinActorType.
-   * @returns The AZAtomicRequestBuilder instance for method chaining.
-   */
-  withSubjectTwinActorType(): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(ActorType.TwinActorType);
+  withSubjectWorkloadType(): AZAtomicRequestBuilder {
+    this.azSubjectBuilder.withKind(ActorType.WorkloadType);
     return this;
   }
 

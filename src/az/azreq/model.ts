@@ -138,6 +138,5 @@ export interface AZResponse {
 
 export enum ActorType {
   UserType = "USER",
-  RoleActorType = "ROLE-ACTOR",
-  TwinActorType = "TWIN-ACTOR",
+  WorkloadType = "WORKLOAD",
 }

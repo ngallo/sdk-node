@@ -82,7 +82,7 @@ const req = new AZAtomicRequestBuilder(
   .withRequestID("1234")
   .withPrincipal(principal)
   .withEntitiesItems("cedar", entities)
-  .withSubjectRoleActorType()
+  .withSubjectWorkloadType()
   .withSubjectSource("keycloack")
   .withSubjectProperty("isSuperUser", true)
   .withResourceID("e3a786fd07e24bfa95ba4341d3695ae8")
