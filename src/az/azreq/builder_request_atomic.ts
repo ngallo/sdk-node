@@ -19,7 +19,7 @@ import { SubjectBuilder } from "./builder_subject";
 import { ResourceBuilder } from "./builder_resource";
 import { ActionBuilder } from "./builder_action";
 import { ContextBuilder } from "./builder_context";
-import { Principal, AZRequest, ActorType } from "./model";
+import { Principal, AZRequest, IdentityType } from "./model";
 
 /**
  * AZAtomicRequestBuilder is the builder for the AZAtomicRequest object.
@@ -109,7 +109,7 @@ export class AZAtomicRequestBuilder {
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
   WithSubjectType(kind: string): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(kind);
+    this.azSubjectBuilder.withType(kind);
     return this;
   }
 
@@ -182,7 +182,7 @@ export class AZAtomicRequestBuilder {
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
   withSubjectUserType(): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(ActorType.UserType);
+    this.azSubjectBuilder.withType(IdentityType.UserType);
     return this;
   }
 
@@ -191,7 +191,7 @@ export class AZAtomicRequestBuilder {
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
   withSubjectWorkloadType(): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(ActorType.WorkloadType);
+    this.azSubjectBuilder.withType(IdentityType.WorkloadType);
     return this;
   }
 
@@ -201,7 +201,7 @@ export class AZAtomicRequestBuilder {
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
   withSubjectType(kind: string): AZAtomicRequestBuilder {
-    this.azSubjectBuilder.withKind(kind);
+    this.azSubjectBuilder.withType(kind);
     return this;
   }
 

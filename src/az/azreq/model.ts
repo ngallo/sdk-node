@@ -136,7 +136,8 @@ export interface AZResponse {
   Evaluations?: EvaluationResponse[];
 }
 
-export enum ActorType {
+export enum IdentityType {
   UserType = "USER",
   WorkloadType = "WORKLOAD",
+  AttributeType = "ATTRIBUTE",
 }

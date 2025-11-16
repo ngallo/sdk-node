@@ -14,13 +14,13 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { Principal } from "./model";
+import { Principal, IdentityType } from "./model";
 import _ from "lodash";
 
 /**
- * Default principal kind.
+ * Default principal type.
  */
-const PrincipalDefaultKind = "user";
+const PrincipalDefaultType = "user";
 
 /**
  * PrincipalBuilder is the builder for the Principal object.
@@ -34,18 +34,45 @@ export class PrincipalBuilder {
    */
   constructor(id: string) {
     this.principal = {
-      type: PrincipalDefaultKind,
+      type: PrincipalDefaultType,
       id: id,
     };
   }
+
+    /**
+     * Sets the type of the principal to UserType.
+     * @returns The PrincipalBuilder instance for method chaining.
+     */
+    withUserType(): PrincipalBuilder {
+      this.withType(IdentityType.UserType);
+      return this;
+    }
+  
+    /**
+     * Sets the type of the principal to WorkloadType.
+     * @returns The PrincipalBuilder instance for method chaining.
+     */
+    withWorkloadType(): PrincipalBuilder {
+      this.withType(IdentityType.WorkloadType);
+      return this;
+    }
+  
+      /**
+     * Sets the type of the principal to AttributeType.
+     * @returns The PrincipalBuilder instance for method chaining.
+     */
+    withAttribute(): PrincipalBuilder {
+      this.withType(IdentityType.AttributeType);
+      return this;
+    }
 
   /**
    * Sets the kind of the principal.
    * @param kind - The kind of the principal.
    * @returns The PrincipalBuilder instance for method chaining.
    */
-  withKind(kind: string): PrincipalBuilder {
-    this.principal.type = kind;
+  withType(type: string): PrincipalBuilder {
+    this.principal.type = type;
     return this;
   }
 
