@@ -78,7 +78,7 @@ async function checkAtomicEvaluation(): Promise<void> {
   const entities = [
     {
       uid: {
-        type: "MagicFarmacia::Platform::BranchInfo",
+        type: "ZTMedFlow::Platform::BranchInfo",
         id: "subscription",
       },
       attrs: {
@@ -93,8 +93,8 @@ async function checkAtomicEvaluation(): Promise<void> {
     633687665465,
     "fc260e783b0c4bd6aa88eed18f57aab3",
     "platform-creator",
-    "MagicFarmacia::Platform::Subscription",
-    "MagicFarmacia::Platform::Action::create"
+    "ZTMedFlow::Platform::Subscription",
+    "ZTMedFlow::Platform::Action::create"
   )
     .withRequestID("1234")
     .withPrincipal(principal)
@@ -153,20 +153,20 @@ async function checkMultipleEvaluations(): Promise<void> {
     .build();
 
   // Create a new resource
-  const resource = new ResourceBuilder("MagicFarmacia::Platform::Subscription")
+  const resource = new ResourceBuilder("ZTMedFlow::Platform::Subscription")
     .withID("e3a786fd07e24bfa95ba4341d3695ae8")
     .withProperty("isEnabled", true)
     .build();
 
   // Create actions
   const actionView = new ActionBuilder(
-    "MagicFarmacia::Platform::Action::create"
+    "ZTMedFlow::Platform::Action::create"
   )
     .withProperty("isEnabled", true)
     .build();
 
   const actionCreate = new ActionBuilder(
-    "MagicFarmacia::Platform::Action::create"
+    "ZTMedFlow::Platform::Action::create"
   )
     .withProperty("isEnabled", true)
     .build();
@@ -199,7 +199,7 @@ async function checkMultipleEvaluations(): Promise<void> {
   const entities = [
     {
       uid: {
-        type: "MagicFarmacia::Platform::BranchInfo",
+        type: "ZTMedFlow::Platform::BranchInfo",
         id: "subscription",
       },
       attrs: {
