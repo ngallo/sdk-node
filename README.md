@@ -61,7 +61,7 @@ const principal = new PrincipalBuilder("amy.smith@acmecorp.com").build();
 const entities = [
   {
     uid: {
-      type: "ZTMedFlow::Platform::BranchInfo",
+      type: "PharmaAuthZFlow::Platform::BranchInfo",
       id: "subscription",
     },
     attrs: {
@@ -76,8 +76,8 @@ const req = new AZAtomicRequestBuilder(
   583438038653,
   "46706cb00ea248d6841cfe2c9f02205b",
   "platform-creator",
-  "ZTMedFlow::Platform::Subscription",
-  "ZTMedFlow::Platform::Action::create"
+  "PharmaAuthZFlow::Platform::Subscription",
+  "PharmaAuthZFlow::Platform::Action::create"
 )
   .withRequestID("1234")
   .withPrincipal(principal)
