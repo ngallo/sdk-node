@@ -108,7 +108,7 @@ export class AZAtomicRequestBuilder {
    * @param kind - The subject kind.
    * @returns The AZAtomicRequestBuilder instance for method chaining.
    */
-  withSubjectKind(kind: string): AZAtomicRequestBuilder {
+  WithSubjectType(kind: string): AZAtomicRequestBuilder {
     this.azSubjectBuilder.withKind(kind);
     return this;
   }
